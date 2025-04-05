@@ -1,0 +1,54 @@
+.section {
+    min-height: 100vh;
+    padding: 4rem 0;
+}
+.dashboard-section, .admin-section, .auth-section {
+    display: none;
+}
+.feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.pricing-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.testimonial-card {
+    transition: transform 0.3s ease;
+}
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+.gradient-bg {
+    background: linear-gradient(90deg, #4F46E5 0%, #7C3AED 100%);
+}
+.gradient-text {
+    background: linear-gradient(90deg, #4F46E5 0%, #7C3AED 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.chart-container {
+    position: relative;
+    height: 250px;
+    width: 100%;
+}
+.notification-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #EF4444;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+@media print {
+    .section {
+        page-break-inside: avoid;
+    }
+}
