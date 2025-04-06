@@ -6,12 +6,25 @@
     <title>VoteSecure - Enterprise Voting System</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <script src="firebase-init.js"></script>
+    <script src="cookie-consent.js"></script>
     <script src="main.js"></script>
+    <style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    </style>
 </head>
 <body class="bg-gray-50">
+<div id="cookie-consent-banner" class="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 text-center hidden">
+    <span id="cookie-consent-message">We use cookies to ensure you get the best experience on our website.</span>
+    <button id="accept-cookies" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg ml-4">Accept</button>
+    <button id="reject-cookies" class="bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg ml-4">Reject</button>
+</div>
     <nav id="main-nav" class="bg-white shadow-md fixed w-full z-50">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <button onclick="window.location.href='index.html'" class="text-xl font-bold text-indigo-600 focus:outline-none">
@@ -23,6 +36,9 @@
                 <a href="#testimonials" class="text-gray-600 hover:text-indigo-600 transition">Testimonials</a>
                 <button id="login-btn" class="text-indigo-600 hover:text-indigo-800 transition">Login</button>
                 <button id="signup-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition">Get Started</button>
+                <button class="theme-toggle text-gray-600 hover:text-indigo-600 transition" title="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
             <div id="user-menu" class="hidden items-center space-x-4">
                 <div class="relative">
@@ -138,7 +154,7 @@
 
         <section id="features" class="section bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
+                <div class="text-center mb-16"></div>
                     <h2 class="text-3xl md:text-4xl font-bold mb-4">Powerful Features for Enterprise Voting</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Our platform offers robust features designed to simplify, secure, and optimize your organization's voting processes.</p>
                 </div>
@@ -397,7 +413,7 @@
                     </div>
                 </div>
 
-                <div class="mt-16 text-center">
+                <div class="mt-16 text-center"></div>
                     <p class="text-xl text-gray-600 mb-8">Need a custom solution? <a href="#" class="text-indigo-600 font-medium">Contact our sales team</a> for a tailored plan.</p>
                     <div class="inline-flex items-center p-4 bg-indigo-50 rounded-lg">
                         <i class="fas fa-info-circle text-indigo-600 mr-3"></i>
@@ -415,7 +431,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Testimonial 1 -->
                     <div class="testimonial-card p-6 bg-white rounded-xl shadow-md">
                         <div class="flex items-center mb-4">
                             <div class="flex-shrink-0">
@@ -517,7 +532,6 @@
                 </div>
 
                 <div class="max-w-3xl mx-auto divide-y divide-gray-200">
-                    <!-- FAQ Item 1 -->
                     <div class="py-5">
                         <details class="group">
                             <summary class="flex justify-between items-center font-medium cursor-pointer">
@@ -601,16 +615,16 @@
                         <h3 class="text-xl font-bold mb-4">VoteSecure</h3>
                         <p class="text-gray-400 mb-4">Secure, transparent voting solutions for modern organizations.</p>
                         <div class="flex space-x-4">
-                            <a href="#" class="text-gray-400 hover:text-white transition">
+                            <a href="https://x.com/CodesPasta" class="text-gray-400 hover:text-white transition" target="_blank">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition">
+                            <a href="https://www.linkedin.com/in/shivamprasad5953/" class="text-gray-400 hover:text-white transition" target="_blank">
                                 <i class="fab fa-linkedin"></i>
                             </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition">
-                                <i class="fab fa-facebook"></i>
+                            <a href="https://www.github.com/therealsaitama" class="text-gray-400 hover:text-white transition" target="_blank">
+                                <i class="fab fa-github"></i>
                             </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition">
+                            <a href="https://www.instagram.com/shivamprasad.24/?hl=en" class="text-gray-400 hover:text-white transition" target="_blank">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </div>
@@ -644,19 +658,20 @@
                             <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
                             <li><a href="#" class="text-gray-400 hover:text-white transition">Careers</a></li>
                             <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                            <li><a href="privacy-policy.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                            <li><a href="terms-of-service.html" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="border-t border-gray-700 mt-10 pt-8">
-                    <div class="flex flex-col md:flex-row justify-between items-center">
-                        <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 VoteSecure. All rights reserved.</p>
+                    <div class="flex flex-col md:flex-row justify-between items-center"></div>
+                        <p class="text-gray-400 text-sm mb-4 md:mb-0"> 2025 VoteSecure. All rights reserved.</p>
                         <div class="flex space-x-6">
-                            <a href="#" class="text-gray-400 hover:text-white text-sm transition">Privacy Policy</a>
-                            <a href="#" class="text-gray-400 hover:text-white text-sm transition">Terms of Service</a>
-                            <a href="#" class="text-gray-400 hover:text-white text-sm transition">Cookie Policy</a>
+                        <a href="privacy-policy.html" class="text-gray-400 hover:text-white text-sm transition" target="_blank">Privacy Policy</a>
+                        <a href="terms-of-service.html" class="text-gray-400 hover:text-white text-sm transition" target="_blank">Terms of Service</a>
+                        <a href="cookie-policy.html" class="text-gray-400 hover:text-white text-sm transition" target="_blank">Cookie Policy</a>
+                        <a href="cookie-policy.html" class="text-gray-400 hover:text-white text-sm transition" target="_blank">Cookie Policy</a>
                         </div>
                     </div>
                 </div>
@@ -723,17 +738,10 @@
                             </div>
                         </div>
                         
-                        <div class="mt-6 grid grid-cols-2 gap-3">
-                            <div>
-                                <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                    <i class="fab fa-google"></i>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                    <i class="fab fa-microsoft"></i>
-                                </a>
-                            </div>
+                        <div class="mt-6">
+                            <button onclick="handleGoogleSignIn()" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <i class="fab fa-google mr-2"></i> Sign in with Google
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -743,7 +751,6 @@
 
     <div id="dashboard-section" class="dashboard-section">
         <div class="min-h-screen bg-gray-100">
-            <!-- Dashboard Header -->
             <header class="bg-white shadow">
                 <div class="container mx-auto px-6 py-3 flex justify-between items-center">
                     <div class="flex items-center">
