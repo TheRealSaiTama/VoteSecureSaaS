@@ -1,43 +1,161 @@
+/* Dark mode theme support */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
+    --accent-color: #4F46E5;
+    --accent-hover: #4338ca;
+    --card-bg: #ffffff;
+    --header-bg: #ffffff;
+    --header-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --footer-bg: #1f2937;
+    --footer-text: #f9fafb;
+    --hero-bg: #ffffff;
+    --pricing-bg: #ffffff;
+    --cta-bg: #4F46E5;
+    --faq-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --border-color: #374151;
+    --accent-color: #6366f1;
+    --accent-hover: #818cf8;
+    --card-bg: #1f2937;
+    --header-bg: #111827;
+    --header-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --footer-bg: #0f172a;
+    --footer-text: #f9fafb;
+    --hero-bg: #111827;
+    --pricing-bg: #111827;
+    --cta-bg: #4c1d95;
+    --faq-bg: #111827;
+}
+
+body {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Apply theme colors to specific elements */
+#main-nav {
+    background-color: var(--header-bg);
+    box-shadow: var(--header-shadow);
+}
+
+#main-nav a {
+    color: var(--text-secondary);
+}
+
+#main-nav a:hover {
+    color: var(--accent-color);
+}
+
+#hero {
+    background-color: var(--hero-bg);
+}
+
+section.bg-white {
+    background-color: var(--bg-primary) !important;
+}
+
+section.bg-gray-50 {
+    background-color: var(--bg-secondary) !important;
+}
+
+.bg-indigo-600 {
+    background-color: var(--cta-bg) !important;
+}
+
+footer.bg-gray-800 {
+    background-color: var(--footer-bg);
+}
+
+footer .text-gray-400 {
+    color: var(--footer-text);
+}
+
+/* Feature and pricing cards */
+.feature-card, .pricing-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+/* Text colors */
+.text-gray-600, .text-gray-700, .text-gray-800 {
+    color: var(--text-secondary) !important;
+}
+
+.text-gray-900 {
+    color: var(--text-primary) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+}
+
+/* Section styles */
 .section {
     min-height: 100vh;
     padding: 4rem 0;
 }
+
 .dashboard-section, .admin-section, .auth-section {
     display: none;
 }
+
 .feature-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .feature-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
+
 .pricing-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
 }
+
 .pricing-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
+
 .testimonial-card {
     transition: transform 0.3s ease;
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
 }
+
 .testimonial-card:hover {
     transform: translateY(-5px);
 }
+
 .gradient-bg {
-    background: linear-gradient(90deg, #4F46E5 0%, #7C3AED 100%);
+    background: linear-gradient(90deg, var(--accent-color) 0%, #7C3AED 100%);
 }
+
 .gradient-text {
-    background: linear-gradient(90deg, #4F46E5 0%, #7C3AED 100%);
+    background: linear-gradient(90deg, var(--accent-color) 0%, #7C3AED 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 .chart-container {
     position: relative;
     height: 250px;
     width: 100%;
 }
+
 .notification-dot {
     width: 8px;
     height: 8px;
@@ -47,6 +165,79 @@
     top: 0;
     right: 0;
 }
+
+/* Theme toggle switch styling */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+.slider .sun {
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    color: #f39c12;
+    font-size: 18px;
+    display: block;
+}
+
+.slider .moon {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    color: #f1c40f;
+    font-size: 18px;
+    display: none;
+}
+
+input:checked + .slider .sun {
+    display: none;
+}
+
+input:checked + .slider .moon {
+    display: block;
+}
+
 @media print {
     .section {
         page-break-inside: avoid;

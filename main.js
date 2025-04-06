@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const nameField = document.getElementById('name-field');
     const logoutBtn = document.getElementById('logout-btn');
     const adminLogoutBtn = document.getElementById('admin-logout-btn');
+    const themeToggle = document.getElementById('theme-toggle');
 
     const landingPage = document.getElementById('landing-page');
     const authSection = document.getElementById('auth-section');
@@ -19,6 +20,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const userMenu = document.getElementById('user-menu');
     const mainNav = document.getElementById('main-nav');
+
+    // Theme switcher functionality
+    if (themeToggle) {
+        // Check for saved theme preference or use device preference
+        const currentTheme = localStorage.getItem('theme') || 
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        // Apply the theme
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.checked = true;
+        }
+        
+        // Toggle theme when switch is clicked
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    }
 
     if (loginBtn) loginBtn.addEventListener('click', showLogin);
     if (signupBtn) signupBtn.addEventListener('click', showSignup);
