@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demo Video</title>
     <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="../../style.css" />
+    <script src="../../main.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
 </head>
 <body>
     <header class="flex justify-between items-center px-6 py-4 bg-indigo-600 text-white">
         <button onclick="window.location.href='../../index.html'" class="bg-white text-indigo-600 font-medium py-2 px-4 rounded-md hover:bg-gray-100 transition">
             Return to Homepage
+        </button>
+        <button class="theme-toggle" class="text-gray-200 hover:text-yellow-300 transition ml-4" title="Toggle dark mode">
+            <i class="fas fa-moon"></i>
         </button>
         <h1 class="text-3xl font-bold text-center flex-grow">Welcome to the Demo Video</h1>
     </header>

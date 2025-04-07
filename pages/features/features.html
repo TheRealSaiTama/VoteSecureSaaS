@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Features</title>
+    <link rel="stylesheet" href="../../style.css" />
+    <script src="../../main.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
 </head>
-<body>
-    
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <button onclick="window.location.href='../../index.html'" class="text-xl font-bold text-indigo-600 focus:outline-none">
+                Vote<span class="text-gray-800">Secure</span>
+            </button>
+            <div class="flex items-center space-x-4">
+                <button class="theme-toggle text-gray-600 hover:text-indigo-600 transition" title="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-24 container mx-auto px-6">
+        <h1 class="text-3xl font-bold mb-6">Features Page</h1>
+        <p>This is the features page content.</p>
+    </main>
 </body>
 </html>
