@@ -1,15 +1,17 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getStorage } from "firebase/storage";
+import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDaeY081ZllYfyIUbEEuBnthVNfAlKVxtM",
   authDomain: "vote-a9b90.firebaseapp.com",
   projectId: "vote-a9b90",
-  storageBucket: "vote-a9b90.firebasestorage.app",
+  storageBucket: "vote-a9b90.appspot.com",
   messagingSenderId: "417903220094",
   appId: "1:417903220094:web:edcefea6bab191c4b5cf2f",
-  measurementId: "G-JYLMMNNWN3"
+  measurementId: "G-JYLMMNNWN3",
+  databaseURL: "https://vote-a9b90-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -20,4 +22,6 @@ googleProvider.setCustomParameters({
 });
 const storage = getStorage(app);
 
-export { auth, googleProvider, storage };
+const database = getDatabase(app);
+
+export { auth, googleProvider, storage, database };

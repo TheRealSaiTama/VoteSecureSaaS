@@ -6,6 +6,7 @@ import { useAuth } from './contexts/AuthContext';
 // Layout Components
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import DemoButton from './components/layout/DemoButton';
 
 // Pages
 import LandingPage from './pages/LandingPage';
@@ -63,6 +64,7 @@ function App() {
             </Routes>
           </main>
         <Footer />
+        <DemoButton />
       </div>
     </ThemeProvider>
   );
