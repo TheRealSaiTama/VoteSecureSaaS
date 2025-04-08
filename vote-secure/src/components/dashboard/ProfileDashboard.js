@@ -26,7 +26,7 @@ const ProfileDashboard = () => {
       let photoURL = currentUser?.photoURL || '';
 
       if (profileImage) {
-        const imageRef = ref(storage, `profileImages/${auth.currentUser.uid}/${profileImage.name}`);
+        const imageRef = ref(storage, `profileImages/${auth.currentUser.uid}/profile.jpg`);
         await uploadBytes(imageRef, profileImage);
         photoURL = await getDownloadURL(imageRef);
       }

@@ -1,4 +1,5 @@
 import { auth } from '../firebase';
+import { getDatabase, ref as dbRef, get } from 'firebase/database';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Create Auth Context
@@ -14,16 +15,34 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        const userData = {
-          id: user.uid,
-          name: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
-          role: 'user'
-        };
-        setCurrentUser(userData);
-        setIsAuthenticated(true);
-        localStorage.setItem('voteSecureUser', JSON.stringify(userData));
+        const db = getDatabase();
+        const userDbRef = dbRef(db, `users/${user.uid}`);
+        get(userDbRef).then((snapshot) => {
+          const data = snapshot.val();
+          const profileImage = data?.profileImage;
+          const userData = {
+            id: user.uid,
+            name: user.displayName,
+            email: user.email,
+            photoURL: profileImage || user.photoURL,
+            role: 'user'
+          };
+          setCurrentUser(userData);
+          setIsAuthenticated(true);
+          localStorage.setItem('voteSecureUser', JSON.stringify(userData));
+        }).catch((error) => {
+          console.error('Error fetching user profile image:', error);
+          const fallbackUser = {
+            id: user.uid,
+            name: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+            role: 'user'
+          };
+          setCurrentUser(fallbackUser);
+          setIsAuthenticated(true);
+          localStorage.setItem('voteSecureUser', JSON.stringify(fallbackUser));
+        });
       } else {
         setCurrentUser(null);
         setIsAuthenticated(false);

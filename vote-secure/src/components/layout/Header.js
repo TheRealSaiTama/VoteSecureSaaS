@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { updateProfile } from 'firebase/auth';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { auth, storage } from '../../firebase';
-import ProfileDashboard from '../dashboard/ProfileDashboard';
+import ProfileSettingsModal from './ProfileSettingsModal';
  
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
@@ -83,7 +80,15 @@ const Header = () => {
                     >
                       <span className="sr-only">Open user menu</span>
                       <div className="h-8 w-8 rounded-full bg-indigo-600 dark:bg-indigo-500 flex items-center justify-center text-white">
-                        {currentUser?.name?.charAt(0) || 'U'}
+                        {currentUser?.photoURL ? (
+                          <img
+                            src={currentUser.photoURL}
+                            alt="Profile"
+                            className="h-8 w-8 rounded-full object-cover"
+                          />
+                        ) : (
+                          currentUser?.name?.charAt(0) || 'U'
+                        )}
                       </div>
                     </button>
                   </div>
@@ -216,19 +221,6 @@ const Header = () => {
                       className="block text-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       Sign up
-      {showProfileModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-2xl w-full p-6 relative">
-            <button
-              onClick={() => setShowProfileModal(false)}
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-            >
-              ✕
-            </button>
-            <ProfileDashboard />
-          </div>
-        </div>
-      )}
                     </Link>
                   </div>
                 </div>
@@ -236,6 +228,10 @@ const Header = () => {
             )}
           </div>
         </div>
+      )}
+      
+      {showProfileModal && (
+        <ProfileSettingsModal onClose={() => setShowProfileModal(false)} />
       )}
     </header>
   );
