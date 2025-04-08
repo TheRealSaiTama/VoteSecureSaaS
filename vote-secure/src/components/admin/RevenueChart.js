@@ -168,7 +168,10 @@ const RevenueChart = () => {
             Average Revenue per Poll
           </div>
           <div className="mt-1 text-2xl font-semibold text-gray-900 dark:text-white">
-            {formatCurrency(currentTotal / chartData.reduce((sum, item) => sum + item.polls, 0))}
+            {(() => {
+              const totalPolls = chartData.reduce((sum, item) => sum + item.polls, 0);
+              return totalPolls > 0 ? formatCurrency(currentTotal / totalPolls) : 'N/A';
+            })()}
           </div>
         </div>
         
